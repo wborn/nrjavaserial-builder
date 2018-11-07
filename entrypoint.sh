@@ -5,16 +5,10 @@ set -euo pipefail
 rm -rf "$GIT_REPO_DIR"
 git clone $GIT_REPO_URL "$GIT_REPO_DIR"
 
-cd "$GIT_REPO_DIR/src/main/c/"
-
-# Add missing OpenJDK 8 includes to Makefile.ubuntu64
-sed -i 's#JDKINCLUDE=-I/usr/lib/jvm/java-7-openjdk-amd64/include/#JDKINCLUDE=-I/usr/lib/jvm/java-8-openjdk-amd64/include/ -I/usr/lib/jvm/java-8-openjdk-amd64/include/linux#g' Makefile.ubuntu64
-
-# Disable using lock files in Makefile.ubuntu64
-sed -i 's#-DLIBLOCKDEV#-DDISABLE_LOCKFILES#g' Makefile.ubuntu64
-sed -i 's# -llockdev##g' Makefile.ubuntu64
+./patch-makefile.sh "$GIT_REPO_DIR/src/main/c/Makefile.ubuntu64"
 
 # Recompile native Linux and Windows libraries
+cd "$GIT_REPO_DIR/src/main/c"
 make -f Makefile.ubuntu64 linux
 make -f Makefile.ubuntu64 windows
 
