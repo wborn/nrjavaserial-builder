@@ -21,6 +21,9 @@ ossrhUsername=SONATYPEJIRAUSERNAME
 ossrhPassword=SONATYPEJIRAPASSWORD
 EOI
 
+# Update library version
+sed -i "s#3.14.0#${VERSION}#g" "$GIT_REPO_DIR/src/main/resources/com/neuronrobotics/nrjavaserial/build.properties"
+
 # Build Java library with recompiled native libraries
 ./gradlew build
 
