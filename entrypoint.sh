@@ -5,7 +5,9 @@ set -euo pipefail
 rm -rf "$GIT_REPO_DIR"
 git clone $GIT_REPO_URL "$GIT_REPO_DIR"
 
-./patch-makefile.sh "$GIT_REPO_DIR/src/main/c/Makefile.ubuntu64"
+# Disable using lock files
+sed -i 's#-DLIBLOCKDEV#-DDISABLE_LOCKFILES#g' "$GIT_REPO_DIR/src/main/c/Makefile.ubuntu64"
+sed -i 's# -llockdev##g' "$GIT_REPO_DIR/src/main/c/Makefile.ubuntu64"
 
 # Recompile native Linux and Windows libraries
 cd "$GIT_REPO_DIR/src/main/c"

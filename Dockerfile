@@ -26,7 +26,5 @@ RUN apt update && \
 VOLUME ${ARTIFACTS_DIR}
 WORKDIR /
 COPY entrypoint.sh /
-COPY patch-makefile.sh /
 RUN chmod +x /entrypoint.sh
-RUN chmod +x /patch-makefile.sh
 CMD ["/entrypoint.sh"]
