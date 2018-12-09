@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 ENV GIT_REPO_DIR="/nrjavaserial" \
     GIT_REPO_URL="https://github.com/NeuronRobotics/nrjavaserial.git" \
     ARTIFACTS_DIR="/artifacts" \
-    VERSION="3.15.0.OH"
+    VERSION="3.15.0.OH2"
 
 RUN apt update && \
     DEBIAN_FRONTEND=noninteractive apt install -y \
