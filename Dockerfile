@@ -3,7 +3,12 @@ FROM ubuntu:18.04
 ENV GIT_REPO_DIR="/nrjavaserial" \
     GIT_REPO_URL="https://github.com/NeuronRobotics/nrjavaserial.git" \
     ARTIFACTS_DIR="/artifacts" \
-    VERSION="3.15.0.OH2"
+    VERSION="3.20.1.OH" \
+    POM_ARTIFACT_ID="nrjavaserial" \
+    POM_GROUP_ID="org.openhab" \
+    POM_DESCRIPTION="An openHAB fork of the RXTX library with a focus on ease of use and embeddability in other libraries." \
+    POM_NAME="NRJavaSerial" \
+    POM_URL="https://www.openhab.org"
 
 RUN apt update && \
     DEBIAN_FRONTEND=noninteractive apt install -y \
@@ -45,5 +50,6 @@ RUN apt update && \
 VOLUME ${ARTIFACTS_DIR}
 WORKDIR /
 COPY entrypoint.sh /
+COPY nrjavaserial.pom /
 RUN chmod +x /entrypoint.sh
 CMD ["/entrypoint.sh"]

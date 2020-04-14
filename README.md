@@ -6,5 +6,6 @@ Builds the [nrjavaserial](https://github.com/NeuronRobotics/nrjavaserial/) libra
 2. It will automatically run `./build-container.sh` to build the Docker container if it hasn't been build yet.
 3. After that it will use the container to clone the Git repository, build the native libraries followed by building the Java library.
 4. Finally the resulting build artifacts are copied to the `artifacts` subdirectory which is mounted as a volume.
+5. To install the artifacts into the local Maven repository run the `./mvn-install-artifacts.sh` script.
 
-The [Dockerfile](Dockerfile) uses some environment variables that can be overriden. 
+The [Dockerfile](Dockerfile) uses some environment variables that can be overriden.
